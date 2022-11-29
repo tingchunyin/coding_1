@@ -10,45 +10,63 @@ date: "2022-11-29"
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
-```
-
-```{r setup, include=FALSE}
 library(tidyverse)
 library(modelsummary)
 library(ggplot2)
 ```
 
 # In this presentation, we are going to look at 3 practical tools to make data visualization more effective.
-```{r}
 
+
+### 1. Special coloring options of plots
+```{r}
+# create dataframe for demo 
 age <- c(11:60)
 weight <- c(40,41,45,48,45,44,50,45,55,48,floor(runif(30, min=40, max=60)),60,61,60,58,56,58,55,50,48,45)
 height <- c(150,153,157,160,161,167,170,170,172,175, floor(runif(30, min=170, max=175)),170, 167,165,164,163,161,160,160,159,158)
 
 df <- data.frame(age, weight, height)
 
-```
-
-
-### 1. Special coloring options of plots
-# In this presentation, we are going to look at 3 practical tools to make data visualization more effective.
-```{r}
-
-ggplot(df) +
+demo <- ggplot(df) +
   geom_point(aes(x = weight, y = height, color = age), size = 3)+
   theme_classic()+
-  scale_color_gradient(low = "orange", high = "blue")
+  #scale_color_gradient(low = "orange", high = "blue")
+scale_color_viridis_c()
 
+demo
 
 ```
 
-### 2. Adding Legends to plots
+### 2. Adjusting Legends' color and shape of plots
 
 ```{r}
+# create dataframe for demo2
+name <- sample(c("Mary", "Paul", "Chris"), size=50, replace=TRUE)
+weight <- c(40,41,45,48,45,44,50,45,55,48,floor(runif(30, min=40, max=60)),60,61,60,58,56,58,55,50,48,45)
+height <- c(150,153,157,160,161,167,170,170,172,175, floor(runif(30, min=170, max=175)),170, 167,165,164,163,161,160,160,159,158)
 
+df2 <- data.frame(name, weight, height)
 
+# add/change colors, shapes and legend titles
+colors <- c("Mary" = "red", "Paul" = "navyblue", "Chris" = "darkgreen")
+shape <- c("Mary" = 1, "Paul" = 2, "Chris" = 0)
 
+demo2 <- ggplot(df2, aes(weight, height)) +
+  geom_point(aes(shape = name, colour = name), size = 3) +
+  theme_classic() #+
+  #scale_colour_manual(values = colors) #+
+  #scale_shape_manual(values = shape) #+
+theme(legend.position = "top")
+
+demo2
 ```
 
 
 ### 3. Positioning & Sizing of plots
+
+```{r}
+
+
+
+```
+
