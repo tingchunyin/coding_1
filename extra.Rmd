@@ -1,6 +1,5 @@
 ---
 title: "extra point"
-output: html_document
 output:
   prettydoc::html_pretty:
     theme: cayman
@@ -9,6 +8,7 @@ date: "2022-11-29"
 ---
 
 ```{r setup, include=FALSE}
+rm(list=ls())
 knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
 library(modelsummary)
@@ -19,7 +19,7 @@ library(ggplot2)
 
 
 ### 1. Special coloring options of plots
-```{r}
+```{r echo=FALSE, message=FALSE, warning=FALSE}
 # create dataframe for demo 
 age <- c(11:60)
 weight <- c(40,41,45,48,45,44,50,45,55,48,floor(runif(30, min=40, max=60)),60,61,60,58,56,58,55,50,48,45)
@@ -39,7 +39,7 @@ demo
 
 ### 2. Adjusting Legends' color and shape of plots
 
-```{r}
+```{r echo=FALSE, message=FALSE, warning=FALSE}
 # create dataframe for demo2
 name <- sample(c("Mary", "Paul", "Chris"), size=50, replace=TRUE)
 weight <- c(40,41,45,48,45,44,50,45,55,48,floor(runif(30, min=40, max=60)),60,61,60,58,56,58,55,50,48,45)
@@ -64,9 +64,32 @@ demo2
 
 ### 3. Positioning & Sizing of plots
 
-```{r}
-
-
+changing its position
+```{r, fig.align="center"}
+# {r, fig.align="center"}
+demo
 
 ```
 
+changing its width
+```{r, fig.width = 14}
+# {r, fig.width = 14}
+demo
+```
+
+changing its height
+```{r, fig.height = 7, fig.width = 7, fig.align="center"}
+# {r, fig.height = 7, fig.width = 7, fig.align="center"}
+demo
+```
+
+of course you can do them all together!!
+```{r, fig.height = 14}
+# {r, fig.height = 14}
+demo
+```
+
+You can 
+```{r}
+demo+coord_flip()
+```
