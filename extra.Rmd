@@ -1,9 +1,10 @@
 ---
 title: "extra point"
-output:
+output: 
   prettydoc::html_pretty:
     theme: cayman
     highlight: github
+    #pdf_document
 date: "2022-11-29"
 ---
 
@@ -71,6 +72,20 @@ demo
 
 ```
 
+changing its size without effect on the ratio (smaller)
+```{r dpi=50}
+# {r dpi=50}
+demo
+
+```
+
+changing its size without effect on the ratio (larger)
+```{r dpi=150}
+# {r dpi=150}
+demo
+
+```
+
 changing its width
 ```{r, fig.width = 14}
 # {r, fig.width = 14}
@@ -78,18 +93,33 @@ demo
 ```
 
 changing its height
-```{r, fig.height = 7, fig.width = 7, fig.align="center"}
-# {r, fig.height = 7, fig.width = 7, fig.align="center"}
-demo
-```
-
-of course you can do them all together!!
 ```{r, fig.height = 14}
 # {r, fig.height = 14}
 demo
 ```
 
-You can 
-```{r}
-demo+coord_flip()
+of course you can do them all together!!
+```{r, fig.height = 5, fig.width = 5, fig.align="right"}
+# {r, fig.height = 5, fig.width = 5, fig.align="right"}
+demo
+```
+
+
+# 4. axis engineering
+You can exchange the x and y axis
+```{r, fig.height = 5, fig.width = 5, fig.align="center"}
+demohist <- ggplot(df) +
+  geom_histogram(aes(x = weight), bins = 10)
+
+demohist+coord_flip()
+```
+
+You can reverse the y axis
+```{r, fig.height = 5, fig.width = 5, fig.align="center"}
+demohist+scale_y_reverse()
+```
+
+You can flip the histogram from right to left
+```{r, fig.height = 5, fig.width = 5, fig.align="center"}
+demohist+scale_y_reverse()+coord_flip()
 ```
